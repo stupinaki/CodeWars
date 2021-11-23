@@ -1,0 +1,54 @@
+// Description: https://www.codewars.com/kata/597e31b6829d0b45f2000011
+
+var locales = [
+    [ "Deepwood Motte",  "Shadow Tower",     "Castle Black",   "Eastwatch",      "Bay of Seals"],
+    [ "The Stony Shore", "Torrhen's Square", "Winterfell",     "The Dreadfort",  "Karhold"],
+    [ "Flint's Finger",  "Barrowtown",       "Moat Cailin",    "White Harbour",  "Widow's Wat"],
+    [ "Pyke",            "Seagard",          "The Twins",      "Sisterton",      "The Fingers"],
+    [ "The Crag",        "Riverrun",         "Darry",          "The Eyrie",      "Gulltown"],
+    [ "Castamere",       "Acorn Hall",       "Harrenhal",      "Maidenpool",     "Dragonstone"],
+    [ "Lannisport",      "Stoney Sept",      "King's Landing", "Blackwater Bay", "Sharp Point"],
+    [ "High Garden",     "Bitterbridge",     "King's Wood",    "Storm's End",    "Evenfall"],
+    [ "Old Town",        "Horn Hill",        "Prince's Pass",  "Planky Town",    "Sunspear"]
+  ];
+  
+var finalDestination = function(currentPos, directions) {
+  
+  const start = findСoordinatesStart(currentPos);
+
+  const arr = directions.split(' ').map(el => el.match(/[A-Z]|\d+/g));
+  
+  let x = start[0];
+  let y = start[1];
+  
+  for(let i = 0; i < arr.length; i++) {
+    
+    if(arr[i][0] ==='N') {
+      y -= +arr[i][1];
+    }
+    if(arr[i][0] ==='S') {
+      y += +arr[i][1];
+    }
+    if(arr[i][0] ==='W') {
+      x -= +arr[i][1];
+    }
+    if(arr[i][0] ==='E') {
+      x += +arr[i][1];
+    }
+    if(y < 0) { 
+      return "The Wall blocks your way"
+    }
+    if(y > 8 || x < 0 || x > 4) {
+      return "You do not have a ship to cross this sea."
+    }
+  }
+ return locales[y][x];   
+}
+
+function findСoordinatesStart(currentPos) {
+  const arrOfIndex = locales.map(el => el.indexOf(currentPos));
+  const x = +arrOfIndex.join(' ').match(/(?<!-)\d+/g)[0];
+  const y = arrOfIndex.indexOf(x);
+
+  return [x, y];
+}
