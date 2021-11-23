@@ -1,0 +1,28 @@
+// Description:  https://www.codewars.com/kata/582c01ad3fd1cc5736000348
+
+function makeMatrix(m,n){
+  const digits = m.toString();
+  const arr = [...new Array(n)].map(el => el = new Array(n).fill('.'));
+  const mI = n-1;
+  for(let y = 0; y < n; y++){
+    for(let x = 0; x < n; x++){
+      if(x === y || y === mI-x) {
+        arr[y][x] = digits[0];
+        continue;
+      }
+      if(y < mI/2 && x > y && x < mI-y) {
+        arr[y][x] = digits[1];
+      }
+      if(y > mI/2 && x < y && x > mI-y-1){
+        arr[y][x] = digits[2];
+      }
+      if(x < mI/2 && y > x && y < mI-x){
+        arr[y][x] = digits[3];
+      }
+      if(arr[y][x] === '.'){
+        arr[y][x] = digits[4];
+      }
+    }
+  }
+   return arr.map(el => el.join(' ')).join('\n');
+}
