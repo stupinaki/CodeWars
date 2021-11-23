@@ -1,0 +1,16 @@
+// Description: https://www.codewars.com/kata/55905b7597175ffc1a00005a
+
+function pageDigits(pages) {
+  const length = pages.toString().length;
+  return (pages - BigInt('9'.repeat(length - 1))) * BigInt(length) + createSum(BigInt(length - 1));
+}
+
+function createSum(n){
+  let zero = 1n;
+  let sum = 0n;
+  for(let i = 1n; i <= n; i++){
+    sum += 9n * zero * i;
+    zero *= 10n;
+  }
+  return sum;
+}
