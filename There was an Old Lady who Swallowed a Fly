@@ -1,0 +1,40 @@
+// Description: https://www.codewars.com/kata/5a68ffe3e626c5e85700002d
+
+const menu = {
+  fly : 'spider',
+  spider : 'bird',
+  bird : 'cat',
+  cat : 'dog',
+  dog : 'goat',
+  goat : 'cow',
+  cow : 'horse',
+}
+
+var oldLadySwallows = function(animals) {
+  let result = [];
+  for(let i = 0; i < animals.length; i++){
+    result.push(animals[i]);
+    result = round(result);
+    if(animals[i] === 'horse') {
+      break;
+    }
+  }
+  return result;
+}
+
+function round(arr) {
+  const animals = arr.slice();
+  
+  for(let i = 0; i < animals.length; i++) {
+    const animal = animals[i];
+    const hunter = menu[animal];
+    const indexOfHunter = animals.findIndex(a => a === hunter);
+    
+    if(indexOfHunter === -1) {
+      continue;
+    }
+    animals.splice(i, 1);
+    i--;
+  }  
+  return animals;
+}
