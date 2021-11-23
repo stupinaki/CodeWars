@@ -1,0 +1,51 @@
+// Description: https://www.codewars.com/kata/5902bc7aba39542b4a00003d
+
+const eat = {
+  'antelope' : ['grass'],
+  'big-fish': ['little-fish'],
+  'bug' : ['leaves'],
+  'bear' :  ['big-fish', 'bug', 'chicken', 'cow', 'leaves', 'sheep' ],
+  'chicken' : ['bug'],
+  'cow' : ['grass'],
+  'fox' : ['chicken', 'sheep'],
+  'giraffe' : ['leaves'],
+  'lion' : ['antelope', 'cow'],
+  'panda' : ['leaves'],
+  'sheep' : ['grass'],
+  'grass': [],
+  'leaves': [],
+  'little-fish': [],
+}
+
+var whoEatsWho = function(zoo) {
+  const keys = Object.keys(eat);
+  const animals = zoo.split(',').filter(v => v);
+  const effects = [zoo];
+  
+  while(true) {
+    const { dead, deadI, hunter } = tryToKill(animals);
+    if(!dead) {
+      break;
+    }
+    effects.push(`${hunter} eats ${dead}`);
+    animals.splice(deadI, 1);
+  }
+    
+  return [...effects, animals.join(',')];
+}
+
+function tryToKill(animals) {
+  let dead;
+  let deadI;
+  const hunterI = animals.findIndex((animal, i) => {
+    const targets = [animals[i-1], animals[i+1]];
+    const target = targets.find((t) => eat[animal] && eat[animal].includes(t));
+    if(target) {
+      deadI = target === animals[i-1] ? i-1 : i+1;
+      dead = target;
+      return true;
+    }
+    return false;
+  }) 
+  return {dead, deadI, hunterI, hunter: animals[hunterI]};
+}
