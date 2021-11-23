@@ -1,0 +1,7 @@
+// Description: https://www.codewars.com/kata/52597aa56021e91c93000cb0
+
+var moveZeros = function (arr) {
+  const withoutZeros = arr.filter(el => el !== 0);
+  const zeros = new Array(arr.length - withoutZeros.length).fill(0);
+  return [...withoutZeros, ...zeros];
+}
