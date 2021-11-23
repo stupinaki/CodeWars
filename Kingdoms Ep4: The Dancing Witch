@@ -1,0 +1,36 @@
+// Description: https://www.codewars.com/kata/6171a85207ab6b003fadc43e
+
+function figureOut(arr) {
+  const obj = {};
+
+ for(let i = 0; i < arr.length; i++){
+  const step = arr[i];
+   
+    for(let j = 0; j < step.length; j++) {
+      const person = step[j];
+      const personInd =  step.indexOf(person);
+      
+          if(!obj[person]){
+            obj[person] = [personInd];
+          }
+          else{
+            obj[person].push(personInd);
+          }
+    }
+ } 
+   for(let key in obj) {
+     if(checkW(obj[key]) && key !== ' ') {
+      return key;
+     }
+   }
+  return null;
+}
+
+function checkW(arr){
+   for(let i = 0; i < arr.length - 1; i++){
+     if(![0, 1].includes(Math.abs(arr[i] - arr[i+1]))) {
+       return true;
+     }
+    }
+  return false;
+}
