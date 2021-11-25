@@ -1,0 +1,58 @@
+//Description: https://www.codewars.com/kata/52774a314c2333f0a7000688
+
+
+function validParentheses(str) {
+  if(!str){
+    return true
+  }
+  const arr = str.split('');
+  let count = 0;
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i] === '(') {
+      count++;
+    } else {
+      count--;
+    } 
+    if(count < 0) {
+      return false;
+    }
+  }  
+  return count === 0;
+}
+
+//   let s = str;
+//   while(s.length){
+//     if(s === s.replace('()','')){
+//       break;
+//     }
+//     s = s.replace('()','');
+//   }
+//   return !s.length;
+
+
+
+//     const chars = str.split('');
+//     const arr = [];
+//     const open = ['('];
+//     const close = [')'];
+
+//     for (let i = 0; i < chars.length; i++) {
+//        let openIndex = open.indexOf(chars[i]);
+//        if (openIndex !== -1) {
+//            arr.push(openIndex);
+//            continue;
+//        }
+
+//        let closeIndex = close.indexOf(chars[i]);
+//        if (closeIndex !== -1) {
+//            openIndex = arr.pop();
+//            if (closeIndex !== openIndex) {
+//                return false;
+//            }
+//        }
+//     }
+
+//     if (arr.length !== 0) {
+//         return false;
+//     }
+//     return true;
