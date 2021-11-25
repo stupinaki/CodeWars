@@ -1,0 +1,31 @@
+// Description: https://www.codewars.com/kata/55b3425df71c1201a800009c
+
+function stat(strg) {
+  if(!strg){
+    return '';
+  }
+  const arr = strg.split(',').map(str => makeSeconds(str)).sort((a,b) => a - b);
+  const l = arr.length;
+  
+  const range = makeTime(arr[l - 1] - arr[0]);
+  const average = makeTime(arr.reduce((a, n) => a + n, 0)/l);
+  const median = makeTime(l % 2 === 0 ? (arr[l/2] + arr[l/2 -1])/2 : arr[(l - 1)/2]);
+  
+  return `Range: ${range} Average: ${average} Median: ${median}`;
+}
+
+function makeSeconds(str){
+  const s = str.split('|');
+  s[0] *= 3600;
+  s[1] *= 60;
+  return s.reduce((a,b) => a + +b, 0);
+}
+
+function makeTime(num){
+  const h = Math.floor(num / 3600);
+  const m = Math.floor((num - h*3600)/60);
+  const s = Math.floor(num - h*3600 - m*60);
+  
+  const arr = [h, m, s].map(el => el < 10 ? '0' + el : el);
+  return arr.join('|');
+}
