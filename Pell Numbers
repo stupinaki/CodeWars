@@ -1,0 +1,15 @@
+// https://www.codewars.com/kata/5818d00a559ff57a2f000082/solutions/javascript
+
+
+function pell(n) {
+  if (n <= 2){
+     return n;
+  }
+  let a = 1n, b = 2n, c;
+  for (let i = 3; i <= n; i++) {
+     c = 2n * b + a;
+     a = b;
+     b = c;
+  }
+  return b;
+}
