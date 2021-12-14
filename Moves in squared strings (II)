@@ -1,0 +1,26 @@
+//https://www.codewars.com/kata/56dbe7f113c2f63570000b86/train/javascript
+
+
+
+function rot(strng) {
+    const arr = strng.split('\n')
+        .map(str => str.split('')
+            .reverse()
+            .join('')
+        )
+        .reverse();
+    return arr.join('\n');
+}
+
+function selfieAndRot(strng) {
+    const arr1 = strng.split('\n').map(str => str + '.'.repeat(str.length));
+    const arr2 = arr1.slice()
+        .map(str => str.split('').reverse().join(''))
+        .reverse();
+
+    return [...arr1, ...arr2].join('\n');
+}
+
+function oper(fct, s) {
+    return fct(s);
+}
