@@ -1,0 +1,67 @@
+//https://www.codewars.com/kata/5805f0663f1f9c49be00011f
+
+
+
+function present(x, y) {
+    if (x === 'goodpresent') {
+        let str = '';
+        for (let i = 0; i < x.length; i++) {
+            str += String.fromCharCode(x[i].charCodeAt() + y);
+        }
+        return str;
+    }
+
+    if (x === 'crap' || x === 'empty') {
+        const arr = x.split('').sort((a, b) => a.charCodeAt() - b.charCodeAt());
+        return arr.join('');
+    }
+
+    if (x === 'bang') {
+        let res = 0;
+        for (let i = 0; i < x.length; i++) {
+            res += x[i].charCodeAt() - y;
+        }
+        return res;
+    }
+
+    if (x === 'badpresent') {
+        return 'Take this back!';
+    }
+
+    if (x === 'dog') {
+        return `pass out from excitement ${y} times`;
+    }
+}
+
+
+
+// function present(x, y){
+//  switch(x){
+//      case 'goodpresent': 
+//        let str = '';
+//        for(let i = 0; i < x.length; i++){
+//          str += String.fromCharCode(x[i].charCodeAt() + y);
+//        }
+//        return str;
+     
+//      case 'crap':
+//         const arr = x.split('').sort((a,b)=> a.charCodeAt() - b.charCodeAt());
+//         return arr.join('');
+     
+//      case 'empty':
+//        return 'empty';
+     
+//      case 'bang':
+//        let res = 0;
+//        for(let i = 0; i < x.length; i++){
+//          res += x[i].charCodeAt() - y;
+//        }
+//        return res;
+     
+//      case  'badpresent':
+//        return 'Take this back!';
+     
+//      case 'dog': 
+//        return `pass out from excitement ${y} times`;
+//  }
+// }
