@@ -1,0 +1,28 @@
+//https://www.codewars.com/kata/58ade79f3c97367977000274
+
+
+function roastLegacy(workloads) {
+  const legacy = {
+    "cobol": 1000,
+    "nonobject": 500,
+    "monolithic": 500,
+    "fax": 100,
+    "modem": 100,
+    "thickclient": 50,
+    "tape": 50,
+    "floppy": 50,
+    "oldschoolit": 50,
+  }
+  const str = workloads.toLowerCase();
+  
+  const complaintsCount = (str.match(/slow!|expensive!|manual!|down!|hostage!|security!/g) || []).length;
+  const legacyArr = str.match(/cobol|nonobject|monolithic|fax|modem|thickclient|tape|floppy|oldschoolit/g) || [];
+  
+  let legacyCount = 0;
+  legacyArr.forEach(s => legacyCount += legacy[s]);
+  
+  if(complaintsCount > 0 || legacyCount > 0){
+    return `Burn baby burn disco inferno ${legacyCount} points earned in this roasting and ${complaintsCount} complaints resolved!`;
+  }
+  return 'These guys are already DevOps and in the Cloud and the business is happy!';
+}
