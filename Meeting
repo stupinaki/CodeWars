@@ -1,0 +1,41 @@
+//https://www.codewars.com/kata/59df2f8f08c6cec835000012
+
+
+function meeting(s) {
+  const arr =  s.toUpperCase()
+        .split(';')
+        .map(str => str.split(':'))
+        .sort((p1, p2) => p1[1].localeCompare(p2[1]) || p1[0].localeCompare(p2[0]));
+  
+  return arr.map(a => `(${a[1]}, ${a[0]})`).join('');
+}
+
+
+
+
+// function meeting(s) {
+//   const arr =  s.toUpperCase().split(';').map(str => str.split(':'));
+  
+//   const obj = {};
+  
+//   arr.forEach(a => {
+//     const name = a[0];
+//     const lastName = a[1];
+//     obj[lastName] = obj[lastName] ? [...obj[lastName], name] : [name];
+//   });
+  
+//   const lastNameSorted = Object.keys(obj).sort();
+//   lastNameSorted.forEach(str => obj[str] = obj[str].sort());
+  
+//   const res = [];
+  
+//   for(let i = 0; i < lastNameSorted.length; i++){
+//     const key = lastNameSorted[i];
+//     const value = obj[key];
+//       for(let i = 0; i < value.length; i++){
+//         const str = `(${key}, ${value[i]})`;
+//         res.push(str);
+//       }
+//   }
+//   return res.join('');
+// }
