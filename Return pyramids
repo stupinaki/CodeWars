@@ -1,0 +1,15 @@
+//https://www.codewars.com/kata/5a1c28f9c9fc0ef2e900013b/javascript
+
+
+function pyramid(n){
+  let result = '';
+  
+  for(let i = 0, j = 0; i < n; i++){
+    const start = '/'.padStart(n - i, ' ');
+    const center = i === n - 1 ? '_'.repeat(j) : ' '.repeat(j);    
+    const row = `${start}${center}\\\n`;
+    result += row;
+    j += 2;
+  }
+  return result;
+}
