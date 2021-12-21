@@ -1,0 +1,27 @@
+https://www.codewars.com/kata/5a830fa2373c2ec8eb00019d/javascript
+
+
+import React from 'react';
+
+
+export class States extends React.Component {
+  state = {
+    united: false
+  }
+  
+  unite() {
+    this.setState({...this.state, united: true})
+  }
+  
+  toggle() {
+    this.setState({...this.state, united: !this.state.united})
+  }
+  
+  render() {
+    return (
+      <div className="status">
+         {this.state.united ? "Code for everyone" : "Make America code again" }
+      </div>
+    )
+  } 
+}
