@@ -1,0 +1,21 @@
+//https://www.codewars.com/kata/605ae9e1d2be8a0023b494ed/javascript
+
+
+function countSalutes(hallway) {
+  let salute = 0;
+  
+  for(let i = 0; i < hallway.length; i++){
+    if(hallway[i] === '>'){
+      const ahead = hallway.split('').slice(i + 1);
+      const count = ahead.filter(char => char === '<').length;
+      salute += count;
+    }
+    
+     if(hallway[i] === '<'){
+      const ahead = hallway.split('').slice(0, i);
+      const count = ahead.filter(char => char === '>').length;
+      salute += count;
+    }
+  }
+  return salute;
+}
