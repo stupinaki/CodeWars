@@ -1,0 +1,17 @@
+//https://www.codewars.com/kata/561bbcb0fbbfb0f5010000ee/javascript
+
+function longestPossible(playback) {
+  const result = songs
+      .map(obj => {
+        return {...obj, playback : getSeconds(obj.playback)};
+      })
+      .sort((a, b) => b.playback - a.playback)
+      .find(obj => obj.playback <= playback);  
+  
+ return result ? result.title : false;
+}
+
+function getSeconds(str){
+  const arr = str.split(':');
+  return arr[0] * 60 + +arr[1];
+}
