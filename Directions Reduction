@@ -1,0 +1,13 @@
+//https://www.codewars.com/kata/550f22f4d758534c1100025a/javascript
+
+
+function dirReduc(arr){
+  const str = arr.join('').replace(/NORTHSOUTH|SOUTHNORTH|EASTWEST|WESTEAST/g, '');
+  const check = /NORTHSOUTH|SOUTHNORTH|EASTWEST|WESTEAST/g.test(str);
+  const newArr = str.match(/NORTH|SOUTH|EAST|WEST/g) || [];
+  
+  if(check){
+    return dirReduc(newArr);
+  }
+  return newArr;
+}
