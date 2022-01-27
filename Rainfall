@@ -1,0 +1,40 @@
+//https://www.codewars.com/kata/56a32dd6e4f4748cc3000006
+
+
+function mean(town, strng) {
+  const target = getTargetTown(town, strng);
+    
+  if(!target){
+    return -1;
+  }
+  const rainfall = getRainfall(target);
+  const total = rainfall.reduce((acc, n) => acc + +n, 0);
+  return total / rainfall.length;
+}
+
+function variance(town, strng) {
+  const target = getTargetTown(town, strng);
+
+   if(!target){
+    return -1;
+  }
+  const rainfall = getRainfall(target);
+  const average = mean(town, strng);
+  return rainfall.reduce((acc, n) => acc + Math.pow(n - average, 2), 0) / rainfall.length;
+}
+
+function getTargetTown(town, strng){
+  const towns = strng.split('\n');
+  const target = towns.find(str => {
+    const regExp = new RegExp(`${ town }(?=:)`, 'g');
+    const match = str.match(regExp);
+    if(match){
+      return match;
+    }
+  });
+  return target;
+}
+
+function getRainfall(str){
+  return str.match(/\d+\.\d+/g) || [];
+}
