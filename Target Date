@@ -1,0 +1,18 @@
+//https://www.codewars.com/kata/569218bc919ccba77000000b/javascript
+
+
+function dateNbDays(a0, a, p) {
+  let dayCount = 0;
+  while (a0 <= a){
+    a0 = a0 + (a0 * p / 36000);
+    dayCount += 1;
+  }
+  
+  const date = new Date('January 1, 2016');
+  date.setDate(date.getDate() + dayCount);
+  
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${ year }-${ month }-${ day }`;
+}
