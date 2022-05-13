@@ -1,0 +1,30 @@
+//https://www.codewars.com/kata/54f0d905d49112f3a300055a
+
+function getHints(a, g) {
+  const answer = [...a];
+  const guess = [...g];
+  const res = {
+    black: 0,
+    white: 0,
+  }
+  
+  for(let i = 0; i < answer.length; i++){
+    if( answer[i] === guess[i]){
+      res.black++
+      answer.splice(i, 1);
+      guess.splice(i, 1);
+      i--
+    }
+  }
+  
+  for(let i = 0; i < guess.length; i++){
+    if(answer.includes(guess[i])){
+      res.white++
+      const indexA = answer.indexOf(guess[i]);   
+      answer.splice(indexA, 1);
+      guess.splice(i, 1);
+      i--
+    }
+  }
+  return res;
+}
