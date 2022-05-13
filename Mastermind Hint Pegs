@@ -1,4 +1,4 @@
-//https://www.codewars.com/kata/54f0d905d49112f3a300055a
+// Description: https://www.codewars.com/kata/54f0d905d49112f3a300055a
 
 function getHints(a, g) {
   const answer = [...a];
